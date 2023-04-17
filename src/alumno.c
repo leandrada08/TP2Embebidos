@@ -34,18 +34,18 @@ int Serializar(const struct alumno_s * alumno,char cadena_json[], uint32_t espac
     cadena_json[0] = '{'; //!< Introduzco { en el lugar 0 de json para cumplir con el formato
     cadena_json++; //!< Le sumo 1 a cadena para que no se sobre escriba la comilla 
     disponible--; //!< Resto un lugar de los disponibles
-    int resultado = SerializarCadena("apellido",(alumno->apellido),cadena_json, disponible);
-    if(resultado>0){
+    int resultado = SerializarCadena("apellido",(alumno->apellido),cadena_json, disponible); //<! Coloco en la cadena apellido en formato json
+    if(resultado>0){//<! Verifico si lo colocado entro en la cadena
         cadena_json=cadena_json+resultado;
         disponible=disponible-resultado;
-        resultado = SerializarCadena("nombre",(alumno->nombre),cadena_json,disponible);
+        resultado = SerializarCadena("nombre",(alumno->nombre),cadena_json,disponible);//<! Coloco en la cadena nombre en formato json
     }
-    if(resultado>0){
+    if(resultado>0){//<! Verifico si lo colocado entro en la cadena
         cadena_json=cadena_json+resultado;
         disponible=disponible-resultado;
-        resultado = SerializarNumero("documento",(alumno->documento),cadena_json,disponible);
+        resultado = SerializarNumero("documento",(alumno->documento),cadena_json,disponible); //<! Coloco en la cadena documento en formato json
     }
-    if(resultado>0){
+    if(resultado>0){//<! Verifico si lo colocado entro en la cadena
         cadena_json=cadena_json+resultado;
         disponible=disponible-resultado;
         cadena_json[-1]='}';
@@ -55,6 +55,8 @@ int Serializar(const struct alumno_s * alumno,char cadena_json[], uint32_t espac
 }
 
 /** \brief Definicion de funciones locales
+ * SerializarNumero: Se encargara de colocar un numero dado en una cadena dada
+ * SerializarCadena: Se encargara de colocar una cadena de caracteres dada en una cadena en memoria
 */
 static int SerializarNumero(const char * campo,int * valor_campo, char * cadena_json,int  espacio){
     return snprintf(cadena_json,espacio,"\"%s\":\"%d\",",campo,valor_campo);
