@@ -1,6 +1,13 @@
 #include "alumno.h"
 #include <stdio.h>
 #include <stdint.h>
+
+
+/**
+ * @file alumno.c 
+ * @brief Codigo fuente de alumno
+*/
+
 /** \brief Modulo alumno
  * En este modulo nos encargaremos de definir el modulo alumno, con sus respectivas funciones publicas y privadas
  * 
@@ -50,7 +57,7 @@ int Serializar(const struct alumno_s * alumno,char cadena_json[], uint32_t espac
 /** \brief Definicion de funciones locales
 */
 static int SerializarNumero(const char * campo,int * valor_campo, char * cadena_json,int  espacio){
-    return snprintf(cadena_json,espacio,"\"%s\":\"%d\"",campo,valor_campo);
+    return snprintf(cadena_json,espacio,"\"%s\":\"%d\",",campo,valor_campo);
 }
 static int SerializarCadena(const char * campo,char * valor_campo, char * cadena_json,int  espacio){
     return snprintf(cadena_json,espacio,"\"%s\":\"%s\"",campo,valor_campo);

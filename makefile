@@ -29,13 +29,18 @@ $(OBJ_DIR): $(OUT_DIR)
 $(DOC_DIR): $(OBJ_DIR)
 	mkdir $(DOC_DIR)
 
+# Creo la carpeta /build/bin
+$(BIN_DIR): $(OUT_DIR)
+	mkdir $(BIN_DIR)
+
 # Regla para generar los codigos objeto a partir de los codigos fuente 
-$(OBJ_DIR)/%.o: $(OBJ_DIR) $(SRC_DIR)/%.c
-	gcc -c $(SRC_DIR)/%.c -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(OBJ_DIR) 
+	gcc -c $< -o $@ -I inc
+# Que es el -I src?
 
 # Defino la regla doc
-doc: $(DOC_DIR) $(OBJ_FILES)
-	doxygen $(SRC_DIR)
+doc: $(DOC_DIR) 
+	doxygen doxyfile
 
 # Defino la regla all
 all: $(OBJ_FILES) $(BIN_DIR) #Pongo que necesito OBJ_FILES, para que cuando busque conseguir esto, consiga todo lo otro

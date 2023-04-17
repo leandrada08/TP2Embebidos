@@ -4,6 +4,12 @@
 #define ALUMNO_H
 
 // Uso documentacion doxygen
+/**
+ * @file alumno.h 
+ * @brief codig
+*/
+
+
 /** \brief Declaracion publicas del modulo de alumno
  * En este archivo nos centramos en hacer las declaracion publicas de 
  * las estructura y funciones que defineremos en el modulo alumno.c
